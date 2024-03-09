@@ -3,8 +3,6 @@ package com.hh99.global.filter;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.hh99.dto.request.LoginRequestDTO;
 import com.hh99.entity.Member;
-import com.hh99.global.exception.ErrorCode;
-import com.hh99.global.exception.NotFoundException;
 import com.hh99.global.jwt.JwtUtil;
 import com.hh99.global.response.ErrorResponseDTO;
 import com.hh99.global.response.SuccessResponseDTO;
@@ -42,9 +40,9 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
             return getAuthenticationManager().authenticate(
                     new UsernamePasswordAuthenticationToken(requestDTO.getEmail(), requestDTO.getPassword(), null)
             );
-        } catch (IOException | NotFoundException e) {
-            log.info("Exception 발생 = {}", e.getMessage());
-            throw new NotFoundException(ErrorCode.NOT_FOUND_MEMBER);
+        } catch (IOException e) {
+            log.error(e.getMessage());
+            throw new RuntimeException(e.getMessage());
         }
     }
 
@@ -61,7 +59,7 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
         response.setStatus(200);
         response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");
-        response.getWriter().write(objectMapper.writeValueAsString(new SuccessResponseDTO<String>(200, "로그인 성공", member.getEmail())));
+        response.getWriter().write(objectMapper.writeValueAsString(new SuccessResponseDTO<String>("로그인 성공", member.getEmail())));
     }
 
     // 로그인 실패
@@ -73,6 +71,6 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
         response.setStatus(401);
         response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");
-        response.getWriter().write(objectMapper.writeValueAsString(new ErrorResponseDTO<>(401, "로그인 실패", null)));
+        response.getWriter().write(objectMapper.writeValueAsString(new ErrorResponseDTO<>(401, "아이디나 비밀번호가 일치하지 않습니다.", null)));
     }
 }

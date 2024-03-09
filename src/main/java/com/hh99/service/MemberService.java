@@ -3,8 +3,8 @@ package com.hh99.service;
 import com.hh99.dto.request.MemberRequestDTO;
 import com.hh99.dto.response.MemberResponseDTO;
 import com.hh99.entity.Member;
-import com.hh99.global.exception.ErrorCode;
-import com.hh99.global.exception.NotFoundException;
+import com.hh99.global.exception.BadRequestException;
+import com.hh99.global.exception.ErrorMsg;
 import com.hh99.global.security.UserDetailsImpl;
 import com.hh99.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
@@ -34,8 +34,9 @@ public class MemberService implements UserDetailsService {
     // 회원 정보를 시큐리티의 인증 관리자에게 전달
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+        log.info("loadUserByUsername() 실행!! email={}", email);
         Member member = memberRepository.findByEmail(email)
-                .orElseThrow(() -> new NotFoundException(ErrorCode.NOT_EXIST_EMAIL));
+                .orElseThrow(() -> new BadRequestException(ErrorMsg.NOT_FOUND_MEMBER));
 
         return new UserDetailsImpl(member);
     }

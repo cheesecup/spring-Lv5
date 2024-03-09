@@ -6,19 +6,17 @@ import lombok.Setter;
 @Getter
 @Setter
 public class SuccessResponseDTO<T> {
-    private int statusCode;
+    private int statusCode = 200;
     private String message;
     private T data;
 
     public SuccessResponseDTO() {}
 
-    public SuccessResponseDTO(int statusCode, String message) {
-        this.statusCode = statusCode;
+    public SuccessResponseDTO(String message) {
         this.message = message;
     }
 
-    public SuccessResponseDTO(int statusCode, String message, T data) {
-        this.statusCode = statusCode;
+    public SuccessResponseDTO(String message, T data) {
         this.message = message;
         this.data = data;
     }

@@ -37,6 +37,7 @@ public class JwtAuthorizationFilter extends OncePerRequestFilter {
         String tokenValue = jwtUtil.getJwtFromRequest(request);
 
         if (StringUtils.hasText(tokenValue)) {
+            log.info("doFilterInternal() 실행!! tokenValue={}", tokenValue);
             String token = jwtUtil.substringToken(tokenValue);
 
             if (!jwtUtil.validateToken(token)) {
@@ -59,6 +60,7 @@ public class JwtAuthorizationFilter extends OncePerRequestFilter {
     // 토큰을 이용한 인증 처리
     // SecurityContextHolder > SecurityContext > Authentication > Principal / Credentials / Authorities
     public void setAuthentication(String email) {
+        log.info("setAuthentication() 실행!!! email = {}", email);
         SecurityContext context = SecurityContextHolder.createEmptyContext(); // 비어있는 `SecurityContext` 생성
         Authentication authentication = createAuthentication(email); // 인증 객체 생성 `Principal`, `Credentials`, `Authorities`를 넣어준다.
         context.setAuthentication(authentication); // 생성된 인증 객체를 `context`에 넣어주기
@@ -71,6 +73,7 @@ public class JwtAuthorizationFilter extends OncePerRequestFilter {
     // Credential : 비밀번호, 사용자 인증에 사용 후 비운다.
     // Authorities : 사용자 권한을 `GrantedAuthority`로 추상화하여 사용
     private Authentication createAuthentication(String email) throws UsernameNotFoundException {
+        log.info("createAuthentication() 실행!!! email = {}", email);
         UserDetails userDetails = memberService.loadUserByUsername(email);
 
         return new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());

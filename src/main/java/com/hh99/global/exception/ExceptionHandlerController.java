@@ -23,4 +23,11 @@ public class ExceptionHandlerController {
 
         return ResponseEntity.status(400).body(responseDTO);
     }
+
+    @ExceptionHandler(GlobalException.class)
+    public ResponseEntity<ErrorResponseDTO> badRequest(GlobalException e) {
+        ErrorResponseDTO responseDTO = new ErrorResponseDTO(e.statusCode(), e.getMessage());
+
+        return ResponseEntity.status(e.statusCode()).body(responseDTO);
+    }
 }

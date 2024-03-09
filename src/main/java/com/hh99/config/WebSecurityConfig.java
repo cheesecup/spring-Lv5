@@ -1,5 +1,7 @@
 package com.hh99.config;
 
+import com.hh99.global.security.CustomAccessDeniedHandler;
+import com.hh99.global.security.CustomAuthenticationEntryPoint;
 import com.hh99.global.filter.JwtAuthenticationFilter;
 import com.hh99.global.filter.JwtAuthorizationFilter;
 import com.hh99.global.jwt.JwtUtil;
@@ -12,6 +14,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
+import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
@@ -21,6 +24,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 
 @Configuration
 @EnableWebSecurity
+@EnableMethodSecurity(securedEnabled = true)
 @RequiredArgsConstructor
 public class WebSecurityConfig {
 
@@ -57,14 +61,22 @@ public class WebSecurityConfig {
 
         http.authorizeHttpRequests(authorizeHttpRequestsCustomizer ->
                 authorizeHttpRequestsCustomizer
-                        .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll() // Resources 접근 허용
+                        .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
+                        .requestMatchers(HttpMethod.GET, "/api/item/**").permitAll()
                         .requestMatchers(HttpMethod.POST, "/api/member/**").permitAll()
-                        .anyRequest().authenticated());
+                        .anyRequest().authenticated()
+        );
 
         // jwtAuthorizationFilter-> JwtAuthenticationFilter -> UsernamePasswordAuthenticationFilter 순서로 실행
         // 사용자 인가 처리 필터 -> 인가 여부에 따라 로그인 진행
         http.addFilterBefore(jwtAuthorizationFilter(), JwtAuthenticationFilter.class);
         http.addFilterBefore(jwtAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);
+
+        http.exceptionHandling(handler ->
+                handler
+                        .authenticationEntryPoint(new CustomAuthenticationEntryPoint())
+                        .accessDeniedHandler(new CustomAccessDeniedHandler())
+        );
 
         return http.build();
     }
