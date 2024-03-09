@@ -12,8 +12,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.security.Principal;
-
 @RestController
 @RequestMapping("/api")
 @RequiredArgsConstructor
@@ -22,10 +20,9 @@ public class MemberController {
     private final MemberService memberService;
 
     @PostMapping("/member")
-    public ResponseEntity<SuccessResponseDTO<MemberResponseDTO>> signup(@RequestBody @Valid MemberRequestDTO requestDTO,
-                                                                        Principal principal) {
+    public ResponseEntity<SuccessResponseDTO<MemberResponseDTO>> signup(@RequestBody @Valid MemberRequestDTO requestDTO) {
         MemberResponseDTO responseDTO = memberService.signup(requestDTO);
 
-        return ResponseEntity.ok(new SuccessResponseDTO<MemberResponseDTO>(200, "회원가입 성공", responseDTO));
+        return ResponseEntity.ok(new SuccessResponseDTO<MemberResponseDTO>("회원가입 성공", responseDTO));
     }
 }
