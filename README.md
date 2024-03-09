@@ -4,11 +4,10 @@
 - Java 17
 - Spring Boot 3.1.9
 - Gradle
-- MySQL 8.0
+- MySQL8.0
 - Dependencies
     - Spring Security
     - Spring Data JPA
-    - Validation
     - JWT
 
 ## 요구사항
@@ -72,7 +71,9 @@
 ### 🔥 추가 구현 기능
 
 ## 유스케이스
+![shopmall_usecase](https://github.com/cheesecup/spring-Lv5/assets/92617830/7e263a6c-e028-42bd-88f3-0118d5054a98)
 
 ## ERD
+![goods-shop_ERD](https://github.com/cheesecup/spring-Lv5/assets/92617830/ede7fad3-4247-4484-9b5a-ed035ab4a4a3)
 
 ## API 명세서
