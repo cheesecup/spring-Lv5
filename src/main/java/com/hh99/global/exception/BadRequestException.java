@@ -1,6 +1,6 @@
 package com.hh99.global.exception;
 
-public class BadRequestException extends GlobalException{
+public class BadRequestException extends GlobalException {
 
     public BadRequestException(ErrorMsg errorMsg) {
         super(errorMsg.getMessage());

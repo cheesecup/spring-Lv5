@@ -1,6 +1,6 @@
 package com.hh99.global.jwt;
 
-import com.hh99.entity.Role;
+import com.hh99.member.entity.Role;
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.security.Keys;
 import io.jsonwebtoken.security.SignatureException;
