@@ -1,6 +1,6 @@
-package com.hh99.repository;
+package com.hh99.member.repository;
 
-import com.hh99.entity.Member;
+import com.hh99.member.entity.Member;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;

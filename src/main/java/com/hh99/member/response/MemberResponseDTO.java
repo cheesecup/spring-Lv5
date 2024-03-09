@@ -1,7 +1,7 @@
-package com.hh99.dto.response;
+package com.hh99.member.response;
 
-import com.hh99.entity.Gender;
-import com.hh99.entity.Role;
+import com.hh99.member.entity.Gender;
+import com.hh99.member.entity.Role;
 import lombok.Getter;
 import lombok.Setter;
 

@@ -1,8 +1,8 @@
 package com.hh99.global.filter;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.hh99.dto.request.LoginRequestDTO;
-import com.hh99.entity.Member;
+import com.hh99.member.request.LoginRequestDTO;
+import com.hh99.member.entity.Member;
 import com.hh99.global.jwt.JwtUtil;
 import com.hh99.global.response.ErrorResponseDTO;
 import com.hh99.global.response.SuccessResponseDTO;
@@ -33,7 +33,6 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
     // 로그인 수행
     @Override
     public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response) throws AuthenticationException {
-        log.info("로그인 시도");
         try {
             LoginRequestDTO requestDTO = new ObjectMapper().readValue(request.getInputStream(), LoginRequestDTO.class);
 
@@ -49,7 +48,6 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
     // 로그인 성공 `SecurityContextHolder`에 `Authentication(=UsernamePasswordAuthenticationToken)` 세팅
     @Override
     protected void successfulAuthentication(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain, Authentication authentication) throws IOException, ServletException {
-        log.info("로그인 성공");
         Member member = ((UserDetailsImpl) authentication.getPrincipal()).getMember();
 
         String token = jwtUtil.createToken(member.getMemberId(), member.getEmail(), member.getRole());
@@ -65,8 +63,6 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
     // 로그인 실패
     @Override
     protected void unsuccessfulAuthentication(HttpServletRequest request, HttpServletResponse response, AuthenticationException failed) throws IOException, ServletException {
-        log.info("로그인 실패");
-
         ObjectMapper objectMapper = new ObjectMapper();
         response.setStatus(401);
         response.setContentType("application/json");

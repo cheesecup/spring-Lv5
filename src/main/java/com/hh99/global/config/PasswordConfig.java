@@ -1,4 +1,4 @@
-package com.hh99.config;
+package com.hh99.global.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

@@ -1,4 +1,4 @@
-package com.hh99.dto.request;
+package com.hh99.member.request;
 
 import lombok.Getter;
 import lombok.Setter;

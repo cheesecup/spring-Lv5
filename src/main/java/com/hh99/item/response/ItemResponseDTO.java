@@ -1,6 +1,6 @@
-package com.hh99.dto.response;
+package com.hh99.item.response;
 
-import com.hh99.entity.Category;
+import com.hh99.item.entity.Category;
 import lombok.Getter;
 import lombok.Setter;
 

@@ -1,6 +1,6 @@
-package com.hh99.repository;
+package com.hh99.item.repository;
 
-import com.hh99.entity.Item;
+import com.hh99.item.entity.Item;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 

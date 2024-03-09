@@ -1,7 +1,7 @@
-package com.hh99.dto.request;
+package com.hh99.member.request;
 
-import com.hh99.entity.Gender;
-import com.hh99.entity.Role;
+import com.hh99.member.entity.Gender;
+import com.hh99.member.entity.Role;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;

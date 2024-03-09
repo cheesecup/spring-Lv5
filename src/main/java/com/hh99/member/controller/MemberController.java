@@ -1,9 +1,9 @@
-package com.hh99.controller;
+package com.hh99.member.controller;
 
-import com.hh99.dto.request.MemberRequestDTO;
-import com.hh99.dto.response.MemberResponseDTO;
+import com.hh99.member.request.MemberRequestDTO;
+import com.hh99.member.response.MemberResponseDTO;
 import com.hh99.global.response.SuccessResponseDTO;
-import com.hh99.service.MemberService;
+import com.hh99.member.service.MemberService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;

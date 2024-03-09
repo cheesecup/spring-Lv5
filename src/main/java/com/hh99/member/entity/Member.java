@@ -1,7 +1,7 @@
-package com.hh99.entity;
+package com.hh99.member.entity;
 
-import com.hh99.dto.request.MemberRequestDTO;
 import com.hh99.global.entity.BaseTime;
+import com.hh99.member.request.MemberRequestDTO;
 import jakarta.persistence.*;
 import lombok.Getter;
 import org.springframework.security.crypto.password.PasswordEncoder;

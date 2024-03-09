@@ -1,4 +1,4 @@
-package com.hh99.entity;
+package com.hh99.member.entity;
 
 import lombok.Getter;
 

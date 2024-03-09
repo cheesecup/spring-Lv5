@@ -1,12 +1,11 @@
-package com.hh99.config;
+package com.hh99.global.config;
 
-import com.hh99.global.security.CustomAccessDeniedHandler;
-import com.hh99.global.security.CustomAuthenticationEntryPoint;
 import com.hh99.global.filter.JwtAuthenticationFilter;
 import com.hh99.global.filter.JwtAuthorizationFilter;
 import com.hh99.global.jwt.JwtUtil;
-import com.hh99.repository.MemberRepository;
-import com.hh99.service.MemberService;
+import com.hh99.global.security.CustomAccessDeniedHandler;
+import com.hh99.global.security.CustomAuthenticationEntryPoint;
+import com.hh99.member.service.MemberService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
 import org.springframework.context.annotation.Bean;
@@ -30,7 +29,6 @@ public class WebSecurityConfig {
 
     private final JwtUtil jwtUtil;
     private final AuthenticationConfiguration authenticationConfiguration;
-    private final MemberRepository memberRepository;
     private final MemberService memberService;
 
     @Bean
@@ -47,7 +45,7 @@ public class WebSecurityConfig {
 
     @Bean
     public JwtAuthorizationFilter jwtAuthorizationFilter() {
-        return new JwtAuthorizationFilter(jwtUtil, memberService, memberRepository);
+        return new JwtAuthorizationFilter(jwtUtil, memberService);
     }
 
     @Bean

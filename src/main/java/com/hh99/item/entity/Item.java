@@ -1,6 +1,6 @@
-package com.hh99.entity;
+package com.hh99.item.entity;
 
-import com.hh99.dto.request.ItemRequestDTO;
+import com.hh99.item.request.ItemRequestDTO;
 import com.hh99.global.entity.BaseTime;
 import jakarta.persistence.*;
 import lombok.Getter;
