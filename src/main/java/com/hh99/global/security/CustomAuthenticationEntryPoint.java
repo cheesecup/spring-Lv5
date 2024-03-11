@@ -15,7 +15,7 @@ public class CustomAuthenticationEntryPoint implements AuthenticationEntryPoint 
     @Override
     public void commence(HttpServletRequest request, HttpServletResponse response, AuthenticationException authException) throws IOException, ServletException {
         ObjectMapper objectMapper = new ObjectMapper();
-        String json = objectMapper.writeValueAsString(new ErrorResponseDTO<>(403,"로그인을 해주세요."));
+        String json = objectMapper.writeValueAsString(new ErrorResponseDTO<>(401,"로그인을 해주세요."));
 
         response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");
