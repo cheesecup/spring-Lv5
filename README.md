@@ -65,7 +65,7 @@
         - 회원만 장바구니 삭제가 가능합니다.
     - 장바구니 삭제 성공을 확인할 수 있는 값을 반환합니다.
         - ex) HTTP Status Code, Error Message …
-- [ ]  공통 기능
+- [x]  공통 기능
     - 로그인 요청의 비밀번호 불일치 등 API 요청의 예외가 발생하는 모든 경우에 대해서 실패(예외상황)에 대해 판단할 수 있는 Status Code, Error 메시지등의 정보를 반환합니다.
 
 ### 🔥 추가 구현 기능
@@ -77,3 +77,4 @@
 ![goods-shop_ERD](https://github.com/cheesecup/spring-Lv5/assets/92617830/ede7fad3-4247-4484-9b5a-ed035ab4a4a3)
 
 ## API 명세서
+https://documenter.getpostman.com/view/19083282/2sA2xh4DLT
